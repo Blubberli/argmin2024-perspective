@@ -15,7 +15,7 @@ The dataset is stored in a zip file, called `data-release-v1.5.zip`. Download th
 following command:
 
 ```bash
-unzip data.zip
+unzip data-release-v1.5.zip
 ```
 
 ### Scenarios
