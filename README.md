@@ -15,7 +15,7 @@ The dataset is stored in a zip file, called `data-release-v1.5.zip`. Download th
 following command:
 
 ```bash
-unzip data.zip
+unzip data-release-v1.5.zip
 ```
 
 ### Scenarios
@@ -24,7 +24,7 @@ We distinguish between three scenarios for this retrieval task. Using these diff
 effect of using socio-cultural properties at varios stages. To participate, please follow the corresponding
 instructions:
 
-1.) **Baseline**: This scenario focus on text-only retrieval of relevant arguments given and evaluate the general
+1.) **Baseline**: This scenario focuses on text-only retrieval of relevant arguments given and evaluate the general
 abilities of the retrieval system. **Note**: do not use any socio-cultural properties neither for the query nor the
 cropus.
 
@@ -32,7 +32,7 @@ cropus.
 **Example candidate**:  _The reduction of sugar in food should be pushed. Not every food needs additional sugar as a
 supplement._
 
-2.) **Explicit Perspectivism**: With this scenarion, we focusing on using explicit mentioned socio-cultural properties
+2.) **Explicit Perspectivism**: With this scenario, we focus on using explicit mentioned socio-cultural properties
 in the query and the corpus. **Note**: thus you are allowed to integrate these properties for all queries and all
 arguments in the corpus for retrieval.
 
@@ -46,7 +46,7 @@ arguments in the corpus for retrieval.
 - **Text**: _Reducing sugar in food should be pushed. Not every food needs additional sugar as a supplement._
 - **Age**: 18-34
 
-3.) **Implicit Perspectivism**: With this scenarion, we test the ability of a retrieval system to account for latently
+3.) **Implicit Perspectivism**: With this scenario, we test the ability of a retrieval system to account for latently
 encoded socio-cultural properties within the argument. **Note**: you are only allowed to use these properties for the
 query **_not_** for the corpus.
 
