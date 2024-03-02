@@ -71,7 +71,8 @@ We will evaluate the retrieval performance based on two core dimensions:
     - ***P@k***: Precision at k (P@k): this metric quantifies how many of the top-k retrieved arguments are relevant.
 - **Fairness**: We will evaluate the fairness of the retrieval system by considering to what extent the ranking
   represents a diverse set of socio-cultural properties and whether minority groups are represented in the top-k
-  retrieved arguments.
+  retrieved arguments. Note that fairness for each query will be evaluated based on all socio-cultural properties that
+  are not part of the query. The metrics will be averaged across all variables.
     - ***alpha-nDCG***: Alpha-nDCG: this metric works like nDCG but on top of that penalizes top-ranked items if they
       are not diverse. As a consequence the metric rewards rankins that represent all relevant different socio-cultural
       properties at the top of the ranking.
