@@ -1,6 +1,6 @@
 # Readme Shared Task *Perspective Argument Retrieval*
 
-This readme gives you all the important information for participate. The goal is to retrieve a set of best-matching
+This readme gives you all the important information for participation. The goal is to retrieve a set of best-matching
 arguments for a given political aspect formulated as question.
 
 ## Instructions
