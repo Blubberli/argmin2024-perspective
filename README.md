@@ -172,7 +172,7 @@ For the submission you will have to upload a JSON file with the following format
 
 This should contain each query_id from the test set and the predicted candidates as a ranked list from the full corpus.
 Please retrieve the top-1000 candidates for each query. The evaluation script will then evaluate the relevance and
-fairness of the retrieved candidates (for k = 4, 8, 16 and 20).
+diversity of the retrieved candidates (at k = 4, 8, 16 and 20).
 
 You can submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism) or you can
 only choose to submit for one or two scenarios of your choice. We will evaluate the submissions for each scenario
