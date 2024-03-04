@@ -88,8 +88,9 @@ python evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predic
 
 You can evaluate your predictions as often as you'd like to. For the official evaluation run, the script will be run on
 the results
-for the unseen test data. We will have two separate evaluations, one for the relevance and one for the fairness. In both
-cases we will rank participants based on the average of the two metrics and the average across the different k-values.
+for the unseen test data. We will have two separate evaluations, one for the relevance and one for diversity. In both
+cases we will report all four metrics across 4 different k values. For ranking participants we focus on nDCG and
+alpha-nDCG as the two main metrics.
 
 ## Baseline
 
@@ -111,7 +112,7 @@ We use the arguments covering the 2019 Swiss Federal elections as a corpus and t
 Afterward, we enrich these arguments with eight political and demographic properties, either provided by the voting
 platform itself (gender, age, party, …) or derived from the filled-out questionnaire of the politicians (political
 attitude, important political aspects, …). This collection encapsulates 26,335 arguments for 45 political aspects from
-German, French, and Italian. For simplicity, we provide examples translated into English in the following.
+German, French, and Italian.
 
 We generate the train and development splits by considering 35 political aspects for training and 10 for development,
 while the argument corpus is used for both sets. Apart from the queries for the baseline scenario, we will also provide
@@ -160,6 +161,28 @@ Example perspective query `perspective-queries/queries_train.jsonl`:
     	"relevant_candidates": [23, 4623, 65, 321, ...]
     },…]
 
+### Submission
+
+For the submission you will have to upload a JSON file with the following format:
+
+    [{
+    	"query_id": "<query_id>",
+    	"retrieved_candidates": [23, 4623, 65, 321, ...]
+    },…]    
+
+This should contain each query_id from the test set and the predicted candidates as a ranked list from the full corpus.
+Please retrieve the top-1000 candidates for each query. The evaluation script will then evaluate the relevance and
+fairness of the retrieved candidates (for k = 4, 8, 16 and 20).
+
+You can submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism) or you can
+only choose to submit for one or two scenarios of your choice. We will evaluate the submissions for each scenario
+separately.
+
+The submissions should be uploaded to your own submission folder which we will provide you with, once registered for
+the shared task. You can upload your submission as often as you'd like to until the deadline. We will have two evaluation
+runs before the final evaluation. You can submit your predictions for the official evaluation as often as you'd like to
+until the deadline. We will consider those submissions that are uploaded at the time of the official evaluation, 
+11.59 pm UTC -12h (“anywhere on Earth”) for each deadline. 
 
 
   
