@@ -4,6 +4,7 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 import tabulate
+import os
 from tqdm import tqdm
 from evaluate_diversity import get_perspectives, alpha_ndcg, calculateNormalizedDiscountedKLDivergence
 from evaluate_relevance import ndcg, precision_at_k
@@ -202,7 +203,7 @@ def get_kl_divergence(k, cutoff_points, gold_distribution, ranked_perspectives):
     klds_for_variable = []
     for socio_value, count in gold_distribution.items():
         kld = calculateNormalizedDiscountedKLDivergence(ranked_perspectives=ranked_perspectives, cut_off_points=cutoff_points,
-                                              k=k, protected_group=socio_value, gold_propotion=count)
+                                                        k=k, protected_group=socio_value, gold_propotion=count)
         klds_for_variable.append(kld)
     return sum(klds_for_variable) / len(klds_for_variable)
 
@@ -211,14 +212,19 @@ if __name__ == '__main__':
     # read in command line arguments
     argument_parser = argparse.ArgumentParser()
     argument_parser.add_argument("--data", type=str, required=True, help="Path to the data directory")
+    argument_parser.add_argument("--scenario", type=str, required=True,  help="Which scenario do you want to evaluate? Either 'baseline' for scenario 1 or 'perspective' for scenario 2 and 3")
+    argument_parser.add_argument("--split", type=str, required=True, help="Which split do you want to evaluate? Either 'train' or 'dev'")
     argument_parser.add_argument("--predictions", type=str, required=True, help="Path to the predictions file")
     argument_parser.add_argument("--output_dir", type=str, required=True, help="Path to the output directory")
     argument_parser.add_argument("--diversity", type=bool, required=False, default=False, help="Evaluate diversity")
     args = argument_parser.parse_args()
 
+    scenario = args.scenario
+    split = args.split
+
     data = read_gold_data(args.data)
     corpus = data["corpus"]
-    dev = data["perspective"]["dev"]
+    ground_truth = data[scenario][split]
     # sort corpus df by argument_id
     corpus = corpus.sort_values("argument_id")
     # set index to argument_id
@@ -229,6 +235,10 @@ if __name__ == '__main__':
     predictions = pd.read_json(args.predictions, lines=True, orient="records")
     predictions = predictions.sort_values("query_id")
 
-    evaluate_relevance(ground_truth_df=dev, predictions_df=predictions, output_dir=args.output_dir)
+    output_dir = f"{args.output_dir}/{scenario}/{split}"
+
+    os.system(f"mkdir -p {output_dir}")
+
+    evaluate_relevance(ground_truth_df=ground_truth, predictions_df=predictions, output_dir=output_dir)
     if args.diversity:
-        evaluate_diversity(ground_truth_df=dev, predictions_df=predictions, corpus=corpus, output_dir=args.output_dir)
+        evaluate_diversity(ground_truth_df=ground_truth, predictions_df=predictions, corpus=corpus, output_dir=output_dir)
