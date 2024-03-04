@@ -83,7 +83,7 @@ We will evaluate the retrieval performance based on two core dimensions:
 The evaluation script can be run by the following command:
 
 ```bash
-python evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predictions.jsonl> --output_dir <path_to_store_results> --diversity True
+python scripts/evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predictions.jsonl> --output_dir <path_to_store_results> --diversity True
 ```
 
 You can evaluate your predictions as often as you'd like to. For the official evaluation run, the script will be run on
