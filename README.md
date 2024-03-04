@@ -95,7 +95,10 @@ These entries must look as follows and include to keys `query_id` (id of the cor
 ```
 After dumping the results, you can run the evaluation with the following command:
 ```bash
-python scripts/evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predictions.jsonl> --output_dir <path_to_store_results> --diversity True --scenario <baseline or perspective>  --split <train or dev>
+python scripts/evaluation.py --data <path_to_corpus.jsonl> \
+  --predictions <path_to_predictions.jsonl> \
+  --output_dir <path_to_store_results> \
+  --diversity True --scenario <baseline or perspective>  --split <train or dev>
 ```
 
 You can evaluate your predictions as often as you'd like to. You only need to upload the prediction file for the official evaluation run. We will then run the script on the results of the unseen test data.
