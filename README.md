@@ -90,7 +90,7 @@ These entries must look as follows and include to keys `query_id` (id of the cor
 ```json
 {
   "query_id":0,
-  "relevant_candidates":[2019017914,201904055,201908061,201903763,...]
+  "relevant_candidates":[2019017914,201904055,201908061,201903763, ...]
 }
 ```
 After dumping the results, you can run the evaluation with the following command:
@@ -101,7 +101,7 @@ python scripts/evaluation.py --data <path_to_corpus.jsonl> \
   --diversity True --scenario <baseline or perspective>  --split <train or dev>
 ```
 
-You can evaluate your predictions as often as you'd like to. You only need to upload the prediction file for the official evaluation run. We will then run the script on the results of the unseen test data.
+You can evaluate your predictions as often as you'd like to. You only need to upload the prediction file for the official evaluation run. We will then run the script on the results of the unseen test data. (Please find details under **Submission**)
 We will have two evaluations, one for relevance and one for diversity. We will report all four metrics across 4 different k values in both cases. We focus on nDCG and
 alpha-nDCG as the main metrics for ranking participants.
 
