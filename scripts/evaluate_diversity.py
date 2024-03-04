@@ -118,8 +118,14 @@ def calculate_idcg(ground_truth_relevance, alpha, ground_truth_perspectives, k_r
       quality, considering both relevance and the diversity of perspectives up to that rank.
     """
 
-    # find the index of the first non-relevant argument
-    index_first_non_relevant = ground_truth_relevance.index(0)
+    # check if there are non-relevant arguments
+    if 0 in ground_truth_relevance:
+        # find the index of the first non-relevant argument
+        index_first_non_relevant = ground_truth_relevance.index(0)
+    else:
+        # all arguments are relevant
+        index_first_non_relevant = len(ground_truth_relevance) - 1
+        
     unique_perspectives = set(ground_truth_perspectives[:index_first_non_relevant])
     # check to cover all unique perspectives first
     covered_perspectives = set()
