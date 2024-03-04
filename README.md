@@ -69,7 +69,7 @@ We will evaluate the retrieval performance based on two core dimensions:
       putting more weight on the top-ranked arguments, since it is more important to retrieve relevant arguments at
       lower ranks.
     - ***P@k***: Precision at k (P@k): this metric quantifies how many of the top-k retrieved arguments are relevant.
-- **Fairness**: We will evaluate the fairness of the retrieval system by considering to what extent the ranking
+- **Diversity**: We will evaluate the fairness of the retrieval system by considering to what extent the ranking
   represents a diverse set of socio-cultural properties and whether minority groups are represented in the top-k
   retrieved arguments. Note that fairness for each query will be evaluated based on all socio-cultural properties that
   are not part of the query. The metrics will be averaged across all variables.
