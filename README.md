@@ -176,26 +176,24 @@ Example perspective query `perspective-queries/queries_train.jsonl`:
 
 ### Submission
 
-For the submission you will have to upload a JSON file with the following format:
+For the submission, you will have to upload a JSON file in the following format:
 
     [{
     	"query_id": "<query_id>",
-    	"retrieved_candidates": [23, 4623, 65, 321, ...]
+    	"relevant_candidates": [23, 4623, 65, 321, ...]
     },…]    
 
 This should contain each query_id from the test set and the predicted candidates as a ranked list from the full corpus.
 Please retrieve the top-1000 candidates for each query. The evaluation script will then evaluate the relevance and
-diversity of the retrieved candidates (at k = 4, 8, 16 and 20).
+diversity of the retrieved candidates (at k = 4, 8, 16, and 20).
 
-You can submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism) or you can
-only choose to submit for one or two scenarios of your choice. We will evaluate the submissions for each scenario
+You can submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism), or you can
+only submit for one or two scenarios of your choice. We will evaluate the submissions for each scenario
 separately.
 
-The submissions should be uploaded to your own submission folder which we will provide you with, once registered for
-the shared task. You can upload your submission as often as you'd like to until the deadline. We will have two evaluation
-runs before the final evaluation. You can submit your predictions for the official evaluation as often as you'd like to
-until the deadline. We will consider those submissions that are uploaded at the time of the official evaluation, 
-11.59 pm UTC -12h (“anywhere on Earth”) for each deadline. 
+Once registered for the shared task, the submissions should be uploaded to your submission folder, which we will provide you with. You can upload your submission as often as you'd like to until the deadline. We will have two evaluation
+runs before the final evaluation. You can submit your predictions for the official evaluation as often as you'd like to until the deadline. We will consider those submissions that are uploaded at the time of the official evaluation, 
+Each deadline is 11.59 pm UTC -12h (“anywhere on Earth”). 
 
 
   
