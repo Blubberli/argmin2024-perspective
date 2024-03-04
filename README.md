@@ -21,19 +21,19 @@ unzip data-release-v1.5.zip
 ### Scenarios
 
 We distinguish between three scenarios for this retrieval task. Using these different scenarios, we want to verify the
-effect of using socio-cultural properties at varios stages. To participate, please follow the corresponding
+effect of using socio-cultural properties at various stages. To participate, please follow the corresponding
 instructions:
 
-1.) **Baseline**: This scenario focuses on text-only retrieval of relevant arguments given and evaluate the general
-abilities of the retrieval system. **Note**: do not use any socio-cultural properties neither for the query nor the
-cropus.
+1.) **Baseline**: This scenario focuses on text-only retrieval of relevant arguments given and evaluates the general
+abilities of the retrieval system. **Note**: do not use any socio-cultural properties for the query or the
+corpus.
 
 **Example query**:  _Are you in favor of the introduction of a tax on foods containing sugar (sugar tax)?_
 **Example candidate**:  _The reduction of sugar in food should be pushed. Not every food needs additional sugar as a
 supplement._
 
-2.) **Explicit Perspectivism**: With this scenario, we focus on using explicit mentioned socio-cultural properties
-in the query and the corpus. **Note**: thus you are allowed to integrate these properties for all queries and all
+2.) **Explicit Perspectivism**: With this scenario, we focus on using explicitly mentioned socio-cultural properties
+in the query and the corpus. **Note**: thus, you are allowed to integrate these properties for all queries and all
 arguments in the corpus for retrieval.
 
 **Example query**:
@@ -64,33 +64,43 @@ We will evaluate the retrieval performance based on two core dimensions:
 
 - **Relevance**: We will evaluate the relevance of the retrieved arguments to the given query. This quantifies the
   ability of the retrieval system to retrieve relevant arguments for a given question for scenario 1 or to retrieve
-  relevant arguments for a given question and socio-cultural properties for scenario 2 and 3.
+  relevant arguments for a given question and socio-cultural properties for scenarios 2 and 3.
     - ***nDCG***: Normalized Discounted Cumulative Gain (nDCG): this metric quantifies the quality of the ranking by
-      putting more weight on the top-ranked arguments, since it is more important to retrieve relevant arguments at
+      putting more weight on the top-ranked arguments since it is more important to retrieve relevant arguments at
       lower ranks.
     - ***P@k***: Precision at k (P@k): this metric quantifies how many of the top-k retrieved arguments are relevant.
 - **Diversity**: We will evaluate the fairness of the retrieval system by considering to what extent the ranking
   represents a diverse set of socio-cultural properties and whether minority groups are represented in the top-k
   retrieved arguments. Note that fairness for each query will be evaluated based on all socio-cultural properties that
   are not part of the query. The metrics will be averaged across all variables.
-    - ***alpha-nDCG***: Alpha-nDCG: this metric works like nDCG but on top of that penalizes top-ranked items if they
-      are not diverse. As a consequence the metric rewards rankins that represent all relevant different socio-cultural
+    - ***alpha-nDCG***: Alpha-nDCG: this metric works like nDCG but, on top of that, penalizes top-ranked items if they
+      are not diverse. As a consequence, the metric rewards rankings that represent all relevant different socio-cultural
       properties at the top of the ranking.
     - ***rKL***: normalized discounted Kulback-Leibler divergence (rKL): this metric quantifies fairness independent of
-      relevance. It measures whether the top-k retrieved arguments are representative of the minority groups of specific
+      relevance. It measures whether the top-k retrieved arguments represent the minority groups of specific
       socio-cultural variables in the corpus.
 
-The evaluation script can be run by the following command:
+To evaluate your systems, you must dump the predictions and then run the evaluation script on these predictions. 
+`baseline.ipynb` shows these steps using `sentence-transformers` and `BM25` as baseline retrieval methods. 
+It also shows you how to create the prediction file. 
+With this `.jsonl` file, you must provide the corresponding best-matching candidates for each query as a JSON entry.
+These entries must look as follows and include to keys `query_id` (id of the corresponding query) and `relevant candidates`, sorted list of the most relevant candidates.
 
+
+```json
+{
+  "query_id":0,
+  "relevant_candidates":[2019017914,201904055,201908061,201903763,...]
+}
+```
+After dumping the results, you can run the evaluation with the following command:
 ```bash
-python scripts/evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predictions.jsonl> --output_dir <path_to_store_results> --diversity True
+python scripts/evaluation.py --data <path_to_corpus.jsonl> --predictions <path_to_predictions.jsonl> --output_dir <path_to_store_results> --diversity True --scenario <baseline or perspective>  --split <train or dev>
 ```
 
-You can evaluate your predictions as often as you'd like to. For the official evaluation run, the script will be run on
-the results
-for the unseen test data. We will have two separate evaluations, one for the relevance and one for diversity. In both
-cases we will report all four metrics across 4 different k values. For ranking participants we focus on nDCG and
-alpha-nDCG as the two main metrics.
+You can evaluate your predictions as often as you'd like to. You only need to upload the prediction file for the official evaluation run. We will then run the script on the results of the unseen test data.
+We will have two evaluations, one for relevance and one for diversity. We will report all four metrics across 4 different k values in both cases. We focus on nDCG and
+alpha-nDCG as the main metrics for ranking participants.
 
 ## Baseline
 
@@ -117,14 +127,14 @@ German, French, and Italian.
 We generate the train and development splits by considering 35 political aspects for training and 10 for development,
 while the argument corpus is used for both sets. Apart from the queries for the baseline scenario, we will also provide
 queries for the perspectivism scenarios, including socio-cultural information. As the x-stance dataset is publicly
-available, final evaluation data consist of secret test sets.
+available, the final evaluation data consists of secret test sets.
 
 ### Socio-Demographic Properties
 
 We describe the socio-cultural profile of an author using the properties given by smartvote.ch. This includes eight
 personal properties: gender, age, residence, education, civil status, denomination, political attitude, and a list of
 important political issues, covering: open foreign policy, liberal economic policy, restrictive financial policy, law &
-order, restrictive migration policy, expanded environmental protection.
+order, restrictive migration policy, and expanded environmental protection.
 
 ### Dataformat
 
