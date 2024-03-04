@@ -107,12 +107,12 @@ alpha-nDCG as the main metrics for ranking participants.
 
 ## Baseline
 
-The baseline is a simple SBERT-based retrieval system. It uses the pre-trained SBERT model from the
-sentence-transformers
-library to encode the queries and the arguments. The retrieval is then performed by computing the cosine similarity
-between the query and the arguments. The top-k arguments are then returned as the retrieval results. There is no
-training
-involved in this baseline system.
+We provide two baselines for the retrieval task. The first baseline is a simple BM25-based retrieval system. It uses
+the BM25 algorithm to retrieve the top-k arguments for a given query. The second baseline is a simple SBERT-based
+retrieval system. It uses the pre-trained SBERT model from the sentence-transformers library to encode the queries and
+the arguments. The retrieval is then performed by computing the cosine similarity between the query and the arguments.
+The top-k arguments are then returned as the retrieval results. There is no training involved in this baseline system.
+The predictions and the results of the baseline system for scenario 1 are stored in the `baseline` folder.
 
 ## Data
 
@@ -187,8 +187,7 @@ This should contain each query_id from the test set and the predicted candidates
 Please retrieve the top-1000 candidates for each query. The evaluation script will then evaluate the relevance and
 diversity of the retrieved candidates (at k = 4, 8, 16, and 20).
 
-You can submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism), or you can
-only submit for one or two scenarios of your choice. We will evaluate the submissions for each scenario
+You need to submit predictions for each scenario (baseline, explicit perspectivism, implicit perspectivism). We will evaluate the submissions for each scenario
 separately.
 
 Once registered for the shared task, the submissions should be uploaded to your submission folder, which we will provide you with. You can upload your submission as often as you'd like to until the deadline. We will have two evaluation
@@ -196,4 +195,6 @@ runs before the final evaluation. You can submit your predictions for the offici
 Each deadline is 11.59 pm UTC -12h (“anywhere on Earth”). 
 
 
-  
+### Questions
+
+For any further questions, please contact us via Slack or e-mail. 
