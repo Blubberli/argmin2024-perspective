@@ -132,6 +132,13 @@ while the argument corpus is used for both sets. Apart from the queries for the 
 queries for the perspectivism scenarios, including socio-cultural information. As the x-stance dataset is publicly
 available, the final evaluation data consists of secret test sets.
 
+### Test Data
+We release three different test sets, the first covering the election 2019, the second covering the latest election and
+the last test set will be a surprise test set.
+
+The *first test set* is located in the `data-release-test-cycle-1.zip` folder in `baseline-queries/queries_test.jsonl` and in `perspective-queries/queries_test.jsonl`.
+Download the file and unzip it. 
+
 ### Socio-Demographic Properties
 
 We describe the socio-cultural profile of an author using the properties given by smartvote.ch. This includes eight
